@@ -1,0 +1,97 @@
+!SESSION 2018-05-23 18:46:11.460 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.genuitec.eclipse.modernweb.angular2.ui.product -keyring /Users/LeMatty/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.genuitec.eclipse.modernweb.angular2.ui.product -keyring /Users/LeMatty/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-05-23 18:46:12.746
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui 2 0 2018-05-23 18:47:15.730
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-05-23 18:47:15.730
+!MESSAGE Cannot bind to an undefined command: plug-in='com.genuitec.eclipse.theming.ui', id='com.genuitec.myeclipse.help.darktheme.commandid'
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2018-05-23 18:47:17.867
+!MESSAGE A DevStyle Theme is being activated on this workspace; preparing colors and configuration
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2018-05-23 18:47:17.913
+!MESSAGE DevStyle has archived current color configurations to alternate preferences - will be restored when switching out of the DevStyle Theme
+!SESSION 2018-05-23 18:57:53.891 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.genuitec.eclipse.modernweb.angular2.ui.product -product com.genuitec.eclipse.modernweb.angular2.ui.product -product com.genuitec.eclipse.modernweb.angular2.ui.product -keyring /Users/LeMatty/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.genuitec.eclipse.modernweb.angular2.ui.product -product com.genuitec.eclipse.modernweb.angular2.ui.product -data /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial -product com.genuitec.eclipse.modernweb.angular2.ui.product -keyring /Users/LeMatty/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-05-23 18:57:54.957
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2018-05-23 19:07:12.497 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_152
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.genuitec.eclipse.modernweb.angular2.ui.product -keyring /Users/LeMatty/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.genuitec.eclipse.modernweb.angular2.ui.product -keyring /Users/LeMatty/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-05-23 19:07:13.759
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.egit.ui 4 0 2018-05-23 19:13:39.486
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:169)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:53)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:263)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:247)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:180)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:141)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:99)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2262)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:133)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:60)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:254)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:236)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:206)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Contains: OK
+Contains: /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial overlaps the workspace location: /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2018-05-23 19:13:39.487
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2018-05-23 19:13:39.487
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2018-05-23 19:13:39.487
+!MESSAGE /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial overlaps the workspace location: /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial
+
+!ENTRY org.eclipse.egit.ui 4 0 2018-05-23 19:14:24.922
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:169)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:53)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:263)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:247)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:180)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:141)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:99)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2262)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:133)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:60)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:254)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:236)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:206)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Contains: OK
+Contains: /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial overlaps the workspace location: /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2018-05-23 19:14:24.922
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2018-05-23 19:14:24.922
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2018-05-23 19:14:24.922
+!MESSAGE /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial overlaps the workspace location: /Users/LeMatty/EPITA/Java/2018adv_s1/TestTutorial
