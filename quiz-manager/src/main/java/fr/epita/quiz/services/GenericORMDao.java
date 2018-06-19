@@ -61,7 +61,7 @@ public abstract class GenericORMDao<T> {
 	public final List<T> search(T entity) {
 		final Session session = sf.openSession();
 		final WhereClauseBuilder<T> wcb = getWhereClauseBuilder(entity);
-		final Query searchQuery = session.createQuery(wcb.getQueryString());
+		final Query<T> searchQuery = session.createQuery(wcb.getQueryString());
 		for (final Entry<String, Object> parameterEntry : wcb.getParameters().entrySet()) {
 			searchQuery.setParameter(parameterEntry.getKey(), parameterEntry.getValue());
 		}
@@ -69,7 +69,7 @@ public abstract class GenericORMDao<T> {
 		return searchQuery.list();
 	}
 
-	protected abstract WhereClauseBuilder getWhereClauseBuilder(T entity);
+	protected abstract WhereClauseBuilder<T> getWhereClauseBuilder(T entity);
 
 	// Old conception
 	// protected abstract String getSearchQuery(T entity);

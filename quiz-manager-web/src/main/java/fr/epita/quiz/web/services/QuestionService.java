@@ -24,7 +24,6 @@ public class QuestionService {
 	private QuestionDAO repository;
 
 	@GET
-	@Path("/")
 	@Produces(value = { MediaType.APPLICATION_JSON_VALUE })
 	public List<QuestionMessage> findAllQuestions() {
 		final List<Question> questions = repository.search(new Question());
