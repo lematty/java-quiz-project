@@ -5,6 +5,7 @@
  */
 package fr.epita.quiz.tests;
 
+
 import javax.inject.Inject;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +23,7 @@ import fr.epita.quiz.datamodel.Question;
 import fr.epita.quiz.datamodel.QuestionType;
 import fr.epita.quiz.datamodel.Student;
 import fr.epita.quiz.services.AuthenticationService;
+import fr.epita.quiz.services.StudentDAO;
 
 /**
  * <h3>Description</h3>
@@ -46,12 +48,15 @@ public class TestCase {
 
 	@Inject
 	SessionFactory sf;
-	
+
 	@Inject
 	AuthenticationService auth;
-	
+
 	@Inject
 	Student student;
+
+	@Inject
+	StudentDAO studentDAO;
 
 	@Test
 	public void testMethod() {
@@ -70,28 +75,21 @@ public class TestCase {
 		tx.commit();
 		// then
 		// TODO
-
 	}
-	
+
 	@Test
 	public void testAuthentication() {
-		System.out.println("Entered test authentication");
 
+		Student student = new Student();
 		student.setName("name");
 		student.setPassword("pass");
-		
-		final Session session = sf.openSession();
-		final Transaction tx = session.beginTransaction();
+		studentDAO.create(student);
+
 		final boolean authenticated = auth.authenticate(student.getName(), student.getPassword());
 		if (authenticated == true) {
 			System.out.println("Login test passed!!!!!!");
 		} else {
 			System.out.println("!!!!!!!Login test failed");
 		}
-		
-		tx.commit();
-		
-		
 	}
-
 }

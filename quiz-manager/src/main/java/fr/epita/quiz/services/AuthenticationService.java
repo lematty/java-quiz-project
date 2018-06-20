@@ -5,6 +5,8 @@
  */
 package fr.epita.quiz.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import fr.epita.quiz.datamodel.Question;
 import fr.epita.quiz.datamodel.Student;
 
 /**
@@ -34,13 +37,23 @@ import fr.epita.quiz.datamodel.Student;
 @Repository
 public class AuthenticationService {
 
+	@Inject
+	StudentDAO authCheck;
+
 	public boolean authenticate(String username, String password) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(Student.class);
-		Student s1 = (Student)context.getBean("student");
-		s1.setName("name");
-		s1.setPassword("pass");
-		
-		return (s1.getName().equals(username) && s1.getPassword().equals(password));
-	}
+		Student student = (Student)context.getBean("student");
 
+		List<Student> students = authCheck.search(student);
+		String studentNameCheck = null;
+		String studentPassCheck = null;
+		for (Student s : students) {
+			studentNameCheck = s.getName();
+			studentPassCheck = s.getPassword();
+		}
+		System.out.println(studentNameCheck);
+		System.out.println(studentPassCheck);
+
+		return (studentNameCheck.equals(username) && studentPassCheck.equals(password));
+	}
 }
