@@ -6,6 +6,7 @@
 package fr.epita.quiz.tests;
 
 import javax.inject.Inject;
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -68,7 +69,7 @@ public class TestMCQAndQuestion {
 	
 		mcqDAO.create(choice);
 		tx.commit();
-
+		System.out.println("testSave ran successfully...");
 	}
 
 }

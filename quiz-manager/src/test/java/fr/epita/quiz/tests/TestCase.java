@@ -20,6 +20,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import fr.epita.quiz.datamodel.Question;
 import fr.epita.quiz.datamodel.QuestionType;
+import fr.epita.quiz.datamodel.Student;
+import fr.epita.quiz.services.AuthenticationService;
 
 /**
  * <h3>Description</h3>
@@ -44,6 +46,12 @@ public class TestCase {
 
 	@Inject
 	SessionFactory sf;
+	
+	@Inject
+	AuthenticationService auth;
+	
+	@Inject
+	Student student;
 
 	@Test
 	public void testMethod() {
@@ -64,6 +72,26 @@ public class TestCase {
 		// TODO
 
 	}
+	
+	@Test
+	public void testAuthentication() {
+		System.out.println("Entered test authentication");
 
+		student.setName("name");
+		student.setPassword("pass");
+		
+		final Session session = sf.openSession();
+		final Transaction tx = session.beginTransaction();
+		final boolean authenticated = auth.authenticate(student.getName(), student.getPassword());
+		if (authenticated == true) {
+			System.out.println("Login test passed!!!!!!");
+		} else {
+			System.out.println("!!!!!!!Login test failed");
+		}
+		
+		tx.commit();
+		
+		
+	}
 
 }

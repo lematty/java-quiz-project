@@ -10,9 +10,9 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
 	private String name;
-	
+	private String password;
+
 	public String getName() {
 		return name;
 	}
@@ -21,9 +21,15 @@ public class Student {
 		this.name = name;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public Student() {
 		
 	}
-	
-	
 }

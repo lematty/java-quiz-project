@@ -59,5 +59,6 @@
     </bean>
 
 
-
+	<bean id="auth" class="fr.epita.quiz.services.AuthenticationService"></bean>
+	<bean id="student" class="fr.epita.quiz.datamodel.Student"></bean>
 </beans>

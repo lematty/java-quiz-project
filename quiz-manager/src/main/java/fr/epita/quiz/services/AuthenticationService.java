@@ -5,7 +5,14 @@
  */
 package fr.epita.quiz.services;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
+
+import fr.epita.quiz.datamodel.Student;
 
 /**
  * <h3>Description</h3>
@@ -23,12 +30,17 @@ import org.springframework.stereotype.Repository;
  * ${tags}
  */
 
+
 @Repository
 public class AuthenticationService {
 
-	public boolean authenticate(String login, String password) {
-		// TODO get a real authentication later
-		return true;
+	public boolean authenticate(String username, String password) {
+		ApplicationContext context = new AnnotationConfigApplicationContext(Student.class);
+		Student s1 = (Student)context.getBean("student");
+		s1.setName("name");
+		s1.setPassword("pass");
+		
+		return (s1.getName().equals(username) && s1.getPassword().equals(password));
 	}
 
 }

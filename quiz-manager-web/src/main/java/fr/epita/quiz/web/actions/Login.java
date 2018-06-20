@@ -37,15 +37,19 @@ public class Login extends SpringServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 
-		final String login = request.getParameter("login");
+		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
-		System.out.println("login : " + login);
-		System.out.println("password" + password);
-		final boolean authenticated = auth.authenticate(login, password);
+		System.out.println("username : " + username);
+		System.out.println("password : " + password);
+		final boolean authenticated = auth.authenticate(username, password);
 		request.getSession().setAttribute("authenticated", authenticated);
-		request.getSession().setAttribute("userName", login);
+		request.getSession().setAttribute("userName", username);
 
-		response.sendRedirect("welcome.jsp");
+		if (authenticated == true) {
+			response.sendRedirect("welcome.jsp");
+		} else {
+			response.sendRedirect("index.html");
+			System.out.println("Invalid username or password");
+		}
 	}
-
 }
