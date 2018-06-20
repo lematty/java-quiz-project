@@ -5,9 +5,6 @@
  */
 package fr.epita.quiz.services;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,38 +32,7 @@ public class QuestionDAO extends GenericORMDao<Question> {
 	String query;
 
 	@Override
-	protected WhereClauseBuilder<Question> getWhereClauseBuilder(Question entity) {
-		final WhereClauseBuilder<Question> wcb = new WhereClauseBuilder<>();
-		wcb.setQueryString(query);
-
-		// TODO as bonus : let the whereclausebuilder generate this map thanks to introspection
-		final Map<String, Object> parameters = new LinkedHashMap<>();
-		parameters.put("type", entity.getType());
-		parameters.put("question", entity.getQuestion());
-		wcb.setParameters(parameters);
-		return wcb;
-
+	protected String getQuery() {
+		return query;
 	}
-
-	// @Override
-	// protected String getSearchQuery(Question question) {
-	// return query;
-	// }
-	//
-	// /*
-	// * (non-Javadoc)
-	// * @see fr.epita.quiz.services.GenericHibernateDao#completeQuery(org.hibernate.query.Query)
-	// */
-	// @Override
-	// protected void completeQuery(Question question, Query toBeCompleted) {
-	//
-	// toBeCompleted.setParameter("type", question.getType());
-	// toBeCompleted.setParameter("question", question.getQuestion());
-	// }
-
-	/*
-	 * (non-Javadoc)
-	 * @see fr.epita.quiz.services.GenericHibernateDao#getWhereClauseBuilder(java.lang.Object)
-	 */
-
 }

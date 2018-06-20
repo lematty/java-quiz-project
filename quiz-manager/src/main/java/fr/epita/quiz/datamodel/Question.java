@@ -5,6 +5,8 @@
  */
 package fr.epita.quiz.datamodel;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +33,6 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-
 	private String question;
 	private QuestionType type;
 
@@ -85,5 +86,4 @@ public class Question {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 }

@@ -1,3 +1,4 @@
 Servers/
 .project
 .classpath
+*.log
