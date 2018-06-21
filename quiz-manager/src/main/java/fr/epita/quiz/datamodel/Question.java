@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
 /**
  * <h3>Description</h3>
  * <p>This class allows to ...</p>
@@ -27,6 +29,7 @@ import javax.persistence.Id;
  *
  * ${tags}
  */
+@Component
 @Entity
 public class Question {
 

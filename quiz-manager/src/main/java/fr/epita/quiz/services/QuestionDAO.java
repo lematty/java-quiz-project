@@ -8,6 +8,8 @@ package fr.epita.quiz.services;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.stereotype.Component;
+
 import fr.epita.quiz.datamodel.Question;
 
 /**
@@ -25,6 +27,7 @@ import fr.epita.quiz.datamodel.Question;
  *
  * ${tags}
  */
+@Component
 public class QuestionDAO extends GenericORMDao<Question> {
 
 	@Inject

@@ -67,7 +67,7 @@ public class TestMCQSearch {
 		questDAO.create(question);
 		
 		final Question question2 = new Question();
-		question2.setQuestion("What is the capital of France");
+		question2.setQuestion("What is the capital of France2");
 		question2.setType(QuestionType.MCQ);
 		questDAO.create(question2);
 
@@ -88,11 +88,11 @@ public class TestMCQSearch {
 		final Question q = new Question();
 		q.setType(QuestionType.MCQ);
 		
-		List<Question> questions = questDAO.search(q);
+		List<Question> questions = questDAO.search(new Question());
 		
 		LOGGER.debug("CAMERON");
 		for (Question thisQuestion : questions) {
-			LOGGER.debug("CAMERON" + thisQuestion.toString());
+			LOGGER.debug("CAMERON" + thisQuestion.getQuestion());
 		}
 	}
 

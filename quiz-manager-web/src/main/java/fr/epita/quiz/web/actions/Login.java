@@ -1,6 +1,7 @@
 package fr.epita.quiz.web.actions;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.epita.quiz.datamodel.Student;
 import fr.epita.quiz.services.AuthenticationService;
+import fr.epita.quiz.services.StudentDAO;
 
 /**
  * Servlet implementation class Login
@@ -45,8 +48,8 @@ public class Login extends SpringServlet {
 		request.getSession().setAttribute("authenticated", authenticated);
 		request.getSession().setAttribute("userName", username);
 
-		if (authenticated == true) {
-			response.sendRedirect("welcome.jsp");
+		if (authenticated) {
+			response.sendRedirect("questions");
 		} else {
 			response.sendRedirect("index.html");
 			System.out.println("Invalid username or password");

@@ -1,51 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+    
+    <context:component-scan base-package="fr.epita.quiz.datamodel, fr.epita.quiz.services, fr.epita.quiz.web.actions" /> 
 
-	<!-- <context:property-placeholder location="classpath:/database.properties" /> <context:component-scan base-package="com.foo" /> -->
-    <context:component-scan base-package="fr.epita.quiz.services" />
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
-		<property name="url" value="jdbc:derby:memory:testDS;create=true" />
-		<property name="username" value="root" />
-		<property name="password" value="password" />
-	</bean>
-	
-	<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean" id="hibernateProperties">
-		<property name="properties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.connection.autocommit">false</prop>
-			</props>
-		</property>
-	</bean>
-	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="hibernateProperties" ref="hibernateProperties" />
-		<property name="packagesToScan">
-			<list>
-				<value>fr.epita.quiz.datamodel</value>
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="questionDAO" class="fr.epita.quiz.services.QuestionDAO" ></bean>
-	<bean id="mcqChoiceDAO" class="fr.epita.quiz.services.MCQChoiceDAO" ></bean>
-	
-	<bean id="questionQuery" class="java.lang.String">
-		<constructor-arg><value><![CDATA[
-			from Question as question where
-				question.type = :type
-			and
-				question.question = :question
-		]]></value></constructor-arg>
-	</bean>
-	
+    <!-- <context:property-placeholder location="classpath:/database.properties" /> <context:component-scan base-package="com.foo" /> -->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver" />
+        <property name="url" value="jdbc:derby:memory:testDS;create=true" />
+        <property name="username" value="root" />
+        <property name="password" value="password" />
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean" id="hibernateProperties">
+        <property name="properties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="hibernateProperties" ref="hibernateProperties" />
+        <property name="packagesToScan">
+            <list>
+                <value>fr.epita.quiz.datamodel</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="questionDAO" class="fr.epita.quiz.services.QuestionDAO" ></bean>
+    <bean id="mcqChoiceDAO" class="fr.epita.quiz.services.MCQChoiceDAO" ></bean>
+    <bean id="studentDAO" class="fr.epita.quiz.services.StudentDAO" ></bean>
+    <bean id="questionQuery" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from Question q 
+            where (:type is null or q.type = :type) and (:question is null or q.question = :question)
+        ]]></value>
+        </constructor-arg>
+    
+    </bean>
+    <bean id="mcqChoiceQuery" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from Question q 
+            where q.type = :type and q.question like :question
+        ]]></value>
+        </constructor-arg>
+    
+    </bean>
+    
+        <bean id="authCheck" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from Student s 
+            where (:name is null or s.name = :name) and (:password is null or s.password = :password)
+        ]]></value>
+        </constructor-arg>
+    
+    </bean>
+
+
+    <bean id="auth" class="fr.epita.quiz.services.AuthenticationService"></bean>
+    <bean id="student" class="fr.epita.quiz.datamodel.Student"></bean>
 </beans>

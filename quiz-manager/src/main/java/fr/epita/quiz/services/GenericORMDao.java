@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Component;
 
 import fr.epita.quiz.datamodel.Question;
 
@@ -35,6 +36,7 @@ import fr.epita.quiz.datamodel.Question;
  *
  * ${tags}
  */
+@Component
 public abstract class GenericORMDao<T> {
 
 	@Inject
@@ -69,6 +71,7 @@ public abstract class GenericORMDao<T> {
 	@SuppressWarnings("unchecked")
 	public final List<T> search(T entity) {
 		final Session session = sf.openSession();
+		final Transaction tx = session.beginTransaction();
 		final WhereClauseBuilder<T> wcb = getWhereClauseBuilder(entity);
 		
 		final Query<T> searchQuery = session.createQuery(wcb.getQueryString());
@@ -79,6 +82,7 @@ public abstract class GenericORMDao<T> {
 			searchQuery.setParameter(parameterEntry.getKey(), parameterEntry.getValue());
 		}
 
+		tx.commit();
 		return searchQuery.list();
 	}
 	
