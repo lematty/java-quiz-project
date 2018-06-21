@@ -49,7 +49,7 @@ public class Login extends SpringServlet {
 		request.getSession().setAttribute("userName", username);
 
 		if (authenticated) {
-			response.sendRedirect("questions");
+			response.sendRedirect("quizzes");
 		} else {
 			response.sendRedirect("index.html");
 			System.out.println("Invalid username or password");

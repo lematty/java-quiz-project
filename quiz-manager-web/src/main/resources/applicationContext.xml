@@ -42,6 +42,15 @@
     <bean id="questionDAO" class="fr.epita.quiz.services.QuestionDAO" ></bean>
     <bean id="mcqChoiceDAO" class="fr.epita.quiz.services.MCQChoiceDAO" ></bean>
     <bean id="studentDAO" class="fr.epita.quiz.services.StudentDAO" ></bean>
+    <bean id="examQuery" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from Exam e 
+            where (:title is null or e.title = :title)
+        ]]></value>
+        </constructor-arg>
+    
+    </bean>
     <bean id="questionQuery" class="java.lang.String">
         <constructor-arg>
             <value><![CDATA[
@@ -54,14 +63,17 @@
     <bean id="mcqChoiceQuery" class="java.lang.String">
         <constructor-arg>
             <value><![CDATA[
-            from Question q 
-            where q.type = :type and q.question like :question
+            from MCQChoice m 
+            where (:choice is null or m.choice = :choice) 
+                and (1=1 or m.valid = :valid) 
+                and (1=1 or m.order = :order)
+                and (:question is null or m.question = :question)
         ]]></value>
         </constructor-arg>
     
     </bean>
     
-        <bean id="authCheck" class="java.lang.String">
+    <bean id="authCheck" class="java.lang.String">
         <constructor-arg>
             <value><![CDATA[
             from Student s 
