@@ -65,12 +65,20 @@
             <value><![CDATA[
             from MCQChoice m 
             where (:choice is null or m.choice = :choice) 
-                and (1=1 or m.valid = :valid) 
+                and (1=1 or m.valid = :valid)
                 and (1=1 or m.order = :order)
                 and (:question is null or m.question = :question)
         ]]></value>
         </constructor-arg>
+    </bean>
     
+    <bean id="examQuestionQuery" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from ExamQuestion e 
+            where (:exam is null or e.exam = :exam) and (:question is null or e.question = :question)
+        ]]></value>
+        </constructor-arg>
     </bean>
     
     <bean id="authCheck" class="java.lang.String">
@@ -80,8 +88,10 @@
             where (:name is null or s.name = :name) and (:password is null or s.password = :password)
         ]]></value>
         </constructor-arg>
+    
     </bean>
 
-	<bean id="auth" class="fr.epita.quiz.services.AuthenticationService"></bean>
-	<bean id="student" class="fr.epita.quiz.datamodel.Student"></bean>
+
+    <bean id="auth" class="fr.epita.quiz.services.AuthenticationService"></bean>
+    <bean id="student" class="fr.epita.quiz.datamodel.Student"></bean>
 </beans>
