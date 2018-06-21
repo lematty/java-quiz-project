@@ -6,6 +6,8 @@
 package fr.epita.quiz.tests;
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.logging.log4j.LogManager;
@@ -92,4 +94,39 @@ public class TestCase {
 			System.out.println("!!!!!!!Login test failed");
 		}
 	}
+
+	@Test
+	public void testAddDeleteStudent() {
+		Student student = new Student();
+		student.setName("student2");
+		student.setPassword("pass2");
+
+		Student student2 = new Student();
+		student2.setName("student3");
+		student2.setPassword("pass3");
+
+		studentDAO.create(student);
+		studentDAO.create(student2);
+		System.out.println(student + " was added\n");
+		System.out.println(student2 + " was added\n");
+
+		List<Student> studentList = studentDAO.search(new Student());
+		for (Student s : studentList) {
+			System.out.println(s.getName());
+			System.out.println(s + " was selected\n");
+		}
+
+		studentDAO.delete(student);
+		System.out.println("Deleted student " + student);
+		List<Student> studentDeleteCheck = studentDAO.search(student);
+		for (Student s : studentDeleteCheck) {
+			System.out.println(s.getName());
+			System.out.println(s + " was deleted\n");
+		}
+	}
+
+//	@Test
+//	public void testUpdate() {
+//		studentDAO.update(student);
+//	}
 }

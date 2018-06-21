@@ -32,7 +32,10 @@ public class Student {
 		this.password = password;
 	}
 	
-	public Student() {
-		
+	public Student() {}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", password=" + password + "]";
 	}
 }

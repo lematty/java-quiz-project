@@ -59,16 +59,14 @@
     
     </bean>
     
-    	<bean id="authCheck" class="java.lang.String">
+    <bean id="authCheck" class="java.lang.String">
         <constructor-arg>
             <value><![CDATA[
             from Student s 
             where (:name is null or s.name = :name) and (:password is null or s.password = :password)
         ]]></value>
         </constructor-arg>
-    
     </bean>
-
 
 	<bean id="auth" class="fr.epita.quiz.services.AuthenticationService"></bean>
 	<bean id="student" class="fr.epita.quiz.datamodel.Student"></bean>

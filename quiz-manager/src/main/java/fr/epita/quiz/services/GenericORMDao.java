@@ -19,7 +19,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
-import fr.epita.quiz.datamodel.Question;
 
 /**
  * <h3>Description</h3>
@@ -60,12 +59,16 @@ public abstract class GenericORMDao<T> {
 
 	public final void update(T entity) {
 		final Session session = sf.openSession();
+		final Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(entity);
+		tx.commit();
 	}
 
 	public final void delete(T entity) {
 		final Session session = sf.openSession();
+		final Transaction tx = session.beginTransaction();
 		session.delete(entity);
+		tx.commit();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -11,11 +11,11 @@ import fr.epita.quiz.datamodel.Student;
 public class StudentDAO extends GenericORMDao<Student> {
 	@Inject
 	@Named("authCheck")
-	String query;
+	String authenticationQuery;
 	
 	@Override
 	protected String getQuery() {
-		return query;
+		return authenticationQuery;
 	}
 	
 	public StudentDAO() {
