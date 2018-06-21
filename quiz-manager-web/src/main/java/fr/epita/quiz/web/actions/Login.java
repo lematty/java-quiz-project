@@ -28,9 +28,7 @@ public class Login extends SpringServlet {
 	/**
 	 * Default constructor.
 	 */
-	public Login() {
-		// TODO Auto-generated constructor stub
-	}
+	public Login() {}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
