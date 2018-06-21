@@ -12,9 +12,13 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import fr.epita.quiz.datamodel.Exam;
+import fr.epita.quiz.datamodel.ExamQuestion;
 import fr.epita.quiz.datamodel.MCQChoice;
 import fr.epita.quiz.datamodel.Question;
 import fr.epita.quiz.datamodel.QuestionType;
+import fr.epita.quiz.services.ExamDAO;
+import fr.epita.quiz.services.ExamQuestionDAO;
 import fr.epita.quiz.services.MCQChoiceDAO;
 import fr.epita.quiz.services.QuestionDAO;
 
@@ -26,7 +30,13 @@ public class TestMCQChoice {
 
 	@Inject
 	MCQChoiceDAO mcqDAO;
+	
+	@Inject
+	ExamDAO eDAO;
 
+	@Inject
+	ExamQuestionDAO eqDAO;
+	
 	@Inject
 	SessionFactory factory;
 
@@ -82,6 +92,41 @@ public class TestMCQChoice {
 			System.out.println("CAMERON: " + c.getChoice());
 		}
 		
+		//////////////////////////////////////////////
+		
+		final Exam exam1 = new Exam();
+		exam1.setTitle("EXAM 1");
+		eDAO.create(exam1);
+		
+		final Exam exam2 = new Exam();
+		exam2.setTitle("EXAM 2");
+		eDAO.create(exam2);
+		
+		for (Exam e: eDAO.search(new Exam())) {
+			System.out.println("WHAT: " +  e.getTitle());
+		}
+		
+		//////////////////////////////////////////////
+		
+		final ExamQuestion eq1 = new ExamQuestion();
+		eq1.setExam(exam1);
+		eq1.setQuestion(question1);
+		eqDAO.create(eq1);
+		
+		final ExamQuestion eq2 = new ExamQuestion();
+		eq2.setExam(exam1);
+		eq2.setQuestion(question2);
+		eqDAO.create(eq2);
+		
+		final ExamQuestion eq3 = new ExamQuestion();
+		eq3.setExam(exam2);
+		eq3.setQuestion(question2);
+		eqDAO.create(eq3);
+		
+		for (ExamQuestion eq: eqDAO.search(eq1)) {
+			System.out.println("WOOO: " +  eq.getExam().getTitle() + " - " + eq.getQuestion().getQuestion());
+		}
+
 		System.out.println("testSave ran successfully...");
 	}
 }
