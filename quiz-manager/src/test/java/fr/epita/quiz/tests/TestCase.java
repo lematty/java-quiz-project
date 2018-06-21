@@ -7,9 +7,7 @@ package fr.epita.quiz.tests;
 
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -20,7 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import fr.epita.quiz.datamodel.Question;
 import fr.epita.quiz.datamodel.QuestionType;
 import fr.epita.quiz.datamodel.Student;
@@ -125,8 +122,33 @@ public class TestCase {
 		}
 	}
 
-//	@Test
-//	public void testUpdate() {
-//		studentDAO.update(student);
-//	}
+	@Test
+	public void testUpdate() {
+		Student studentToBeUpdated = new Student();
+		studentToBeUpdated.setName("name");
+		List<Student> getStudent = studentDAO.search(studentToBeUpdated);
+		System.out.println("\n--------------- Before Update  ----------------");
+		for (Student s : getStudent) {
+			studentToBeUpdated = s;
+			System.out.println(s + " <--- this object was selected for update");
+		}
+		System.out.println("-----------------------------------------------\n");
+
+		studentToBeUpdated.setName("nameHasChangedSuccessfully!!");
+		studentDAO.update(studentToBeUpdated);
+		List<Student> updatedStudentList = studentDAO.search(studentToBeUpdated);
+
+		System.out.println("\n---------------- After Update -----------------");
+		for (Student updateCheck : updatedStudentList) {
+			System.out.println(updateCheck + " <--- this object was updated");
+		}
+		System.out.println("-----------------------------------------------\n");
+
+		List<Student> getAllStudents = studentDAO.search(new Student());
+		System.out.println("\n----------------- All results ------------------");
+		for (Student allStudentList : getAllStudents) {
+			System.out.println(allStudentList);
+		}
+		System.out.println("------------------------------------------------\n");
+	}
 }
