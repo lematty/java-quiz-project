@@ -15,6 +15,8 @@ if (! auth){
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Welcome</title>
+			<link rel="stylesheet"
+				href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	</head>
 	
 	<body>
@@ -24,5 +26,13 @@ if (! auth){
                 <a href="quiz?id=${exam.id}">${exam.title}</a><br>
             </c:forEach>
 		</div>
+
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+			<a href="create-quiz.jsp">
+				<button class="btn btn-lg btn-outline-success" type="button">Create Quiz!</button>
+			</a>
+		</div>
+			<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	</body>
 </html>

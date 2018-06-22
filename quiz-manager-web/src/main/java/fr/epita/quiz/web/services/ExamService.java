@@ -34,10 +34,9 @@ public class ExamService extends SpringServlet {
 			createDummyQuestion();
 			exams = repository.search(new Exam());
 		}
-		
 		return exams;
 	}
-	
+
 	public void createDummyQuestion() {
 		final Exam e = new Exam();
 		e.setTitle("This is my goddamn exam");
