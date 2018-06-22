@@ -37,28 +37,24 @@ public class AddQuestion extends SpringServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Exam exam = new Exam();
 		exam.setTitle(request.getParameter("testTitle"));
-		List<Exam> examList = examDAO.search(exam);
-		System.out.println(examList);
-		for (Exam examResult : examList) {
-			exam = examResult;
-		}
-		System.out.println("Add question to " + exam);
+		Exam currentExam = examDAO.search(exam).get(0);
+		System.out.println(currentExam.getTitle());
+
+		System.out.println("Add question to " + currentExam.getTitle() + " [" + currentExam.getId() + "]");
 		
 		Question question = new Question();
 		question.setQuestion(request.getParameter("questionName"));
 		question.setType(QuestionType.MCQ);
 		questionDAO.create(question);
 		
-		List<Question> questionList = questionDAO.search(question);
-		for (Question questionResult : questionList) {
-			question = questionResult;
-		}
+		Question addedQuestion = questionDAO.search(question).get(0);
+		System.out.println(addedQuestion.getQuestion());
 		
 		ExamQuestion examQuestion = new ExamQuestion();
-		examQuestion.setExam(exam);
+		examQuestion.setExam(currentExam);
 		System.out.println("Add exam to " + examQuestion);
 
-		examQuestion.setQuestion(question);
+		examQuestion.setQuestion(addedQuestion);
 		System.out.println("Add question to " + examQuestion);
 
 		examQuestionDAO.create(examQuestion);

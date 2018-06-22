@@ -57,7 +57,7 @@ public class SubmitQuiz extends SpringServlet {
 		Question question = new Question();
 		
 		// Find the current user
-		String username = (String) request.getSession().getAttribute("username");
+		String username = (String) request.getSession().getAttribute("userName");
 		Student student = new Student();
 		student.setName(username);
 		Student currentUser = studentDAO.search(student).get(0);
