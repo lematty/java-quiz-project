@@ -3,3 +3,4 @@ Servers/
 .classpath
 *.log
 *.out.xml
+*.component
