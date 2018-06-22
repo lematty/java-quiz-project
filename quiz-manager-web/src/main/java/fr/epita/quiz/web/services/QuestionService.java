@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -18,7 +17,6 @@ import fr.epita.quiz.datamodel.Exam;
 import fr.epita.quiz.datamodel.ExamQuestion;
 import fr.epita.quiz.datamodel.MCQChoice;
 import fr.epita.quiz.datamodel.Question;
-import fr.epita.quiz.datamodel.QuestionType;
 import fr.epita.quiz.services.ExamDAO;
 import fr.epita.quiz.services.ExamQuestionDAO;
 import fr.epita.quiz.services.MCQChoiceDAO;
