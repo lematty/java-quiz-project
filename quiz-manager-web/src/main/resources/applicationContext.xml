@@ -44,6 +44,8 @@
     <bean id="studentDAO" class="fr.epita.quiz.services.StudentDAO" ></bean>
     <bean id="examDAO" class="fr.epita.quiz.services.ExamDAO" ></bean>
     <bean id="examQuestionDAO" class="fr.epita.quiz.services.ExamQuestionDAO" ></bean>
+    <bean id="submissionDAO" class="fr.epita.quiz.services.SubmissionDAO" ></bean>
+    <bean id="mcqSubmissionDAO" class="fr.epita.quiz.services.MCQSubmissionDAO" ></bean>
     <bean id="examQuery" class="java.lang.String">
         <constructor-arg>
             <value><![CDATA[
@@ -91,6 +93,24 @@
         ]]></value>
         </constructor-arg>
     
+    </bean>
+    
+    <bean id="submissionQuery" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from Submission s 
+            where (:exam is null or s.exam = :exam) and (:question is null or s.question = :question) and (:student is null or s.student = :student)
+        ]]></value>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="mcqSubmissionQuery" class="java.lang.String">
+        <constructor-arg>
+            <value><![CDATA[
+            from MCQSubmission s 
+            where (:exam is null or s.exam = :exam) and (:choice is null or s.choice = :choice) and (:student is null or s.student = :student)
+        ]]></value>
+        </constructor-arg>
     </bean>
 
 

@@ -22,7 +22,7 @@ if (! auth){
     <body>
         <h1>Welcome, <%=session.getAttribute("userName") %></h1>
         <div class="container">
-            <form action="submit_quiz" method="post">
+            <form action="submit_quiz?quiz_id=${quiz_id}" method="post">
 	            <c:forEach var="question" items="${questions}">
 	            <div class="card" style="margin-bottom: 15px;">
 	                <div class="card-header">${question.question.question}</div>

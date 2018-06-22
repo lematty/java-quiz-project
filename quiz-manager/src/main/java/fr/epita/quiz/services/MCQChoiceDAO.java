@@ -8,6 +8,11 @@ package fr.epita.quiz.services;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import fr.epita.quiz.datamodel.Exam;
 import fr.epita.quiz.datamodel.MCQChoice;
 
 /**
@@ -34,6 +39,17 @@ public class MCQChoiceDAO extends GenericORMDao<MCQChoice> {
 	@Override
 	protected String getQuery() {
 		return query;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public final MCQChoice searchById(String id) {
+		final Session session = sf.openSession();
+		final Transaction tx = session.beginTransaction();
+		
+		final Query<MCQChoice> searchQuery = session.createQuery("from MCQChoice where id=" + id);
+
+		tx.commit();
+		return searchQuery.list().get(0);
 	}
 	
 	/*

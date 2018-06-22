@@ -16,6 +16,9 @@ public class MCQSubmission {
 	private MCQChoice choice;
 	
 	@ManyToOne
+	private Student student;
+
+	@ManyToOne
 	private Exam exam;
 
 	public Integer getId() {
@@ -32,6 +35,14 @@ public class MCQSubmission {
 
 	public void setChoice(MCQChoice choice) {
 		this.choice = choice;
+	}
+	
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	public Exam getExam() {

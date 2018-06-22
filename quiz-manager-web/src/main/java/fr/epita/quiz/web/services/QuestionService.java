@@ -98,6 +98,7 @@ public class QuestionService extends SpringServlet {
 		
 		request.getSession().setAttribute("questions", questions);
 		request.getSession().setAttribute("choices", choices);
-		response.sendRedirect("questions.jsp");
+		request.getSession().setAttribute("quiz_id", params.get("quiz_id"));
+		response.sendRedirect("questions.jsp?" +  request.getQueryString());
 	}
 }

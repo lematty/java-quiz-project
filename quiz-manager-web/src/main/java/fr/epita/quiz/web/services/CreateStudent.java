@@ -25,10 +25,12 @@ public class CreateStudent extends SpringServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Student addStudent = new Student();
 		addStudent.setName(request.getParameter("username"));
-		addStudent.setPassword(request.getParameter("username"));
+		addStudent.setPassword(request.getParameter("password"));
 		System.out.println("username : " + addStudent.getName());
 		System.out.println("password : " + addStudent.getPassword());
 		studentDAO.create(addStudent);
+		request.getSession().setAttribute("authenticated", true);
+		request.getSession().setAttribute("userName", addStudent.getName());
 		response.sendRedirect("quizzes");
 	}
 }
