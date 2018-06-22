@@ -23,7 +23,7 @@ if (! auth){
 		<h1>Welcome, <%=session.getAttribute("userName") %></h1>
 		<div class="container">
             <c:forEach var="exam" items="${exams}">
-                <a href="quiz?id=${exam.id}">${exam.title}</a><br>
+                <a href="questions?quiz_id=${exam.id}">${exam.title}</a><br>
             </c:forEach>
 		</div>
 

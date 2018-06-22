@@ -5,9 +5,15 @@
  */
 package fr.epita.quiz.services;
 
+import java.util.List;
+import java.util.Map.Entry;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
 import fr.epita.quiz.datamodel.Exam;
@@ -22,5 +28,16 @@ public class ExamDAO extends GenericORMDao<Exam> {
 	@Override
 	protected String getQuery() {
 		return query;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public final Exam searchExamById(String id) {
+		final Session session = sf.openSession();
+		final Transaction tx = session.beginTransaction();
+		
+		final Query<Exam> searchQuery = session.createQuery("from Exam where id=" + id);
+
+		tx.commit();
+		return searchQuery.list().get(0);
 	}
 }
