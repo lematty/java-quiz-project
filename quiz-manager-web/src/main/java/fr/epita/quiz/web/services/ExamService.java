@@ -29,7 +29,7 @@ public class ExamService extends SpringServlet {
 
 	public List<Exam> findAllExams() {
 		List<Exam> exams = repository.search(new Exam());
-		
+
 		if (exams.isEmpty()) {
 			createDummyQuestion();
 			exams = repository.search(new Exam());

@@ -20,19 +20,32 @@ if (! auth){
 	</head>
 	
 	<body>
-		<h1>Welcome, <%=session.getAttribute("userName") %></h1>
 		<div class="container">
-            <c:forEach var="exam" items="${exams}">
-                <a href="quiz?id=${exam.id}">${exam.title}</a><br>
-            </c:forEach>
+			<div class="row">
+				<h1 class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >Welcome, <%=session.getAttribute("userName") %></h1><br>
+			</div>
+			<div class="row">
+				<c:forEach var="exam" items="${exams}">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		                <a href="quiz?id=${exam.id}">${exam.title}</a>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+						<form action="delete-quiz" method="post">
+							<input name="testId" value="${exam.id}" class="form-control" type="text" />
+							<input name="testTitle" value="${exam.title}" class="form-control" type="text" />
+							<button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+						</form>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+	            </c:forEach>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+				<a href="create-quiz.jsp">
+					<button class="btn btn-lg btn-outline-success" type="button">Create Quiz</button>
+				</a>
+			</div>
 		</div>
-
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-			<a href="create-quiz.jsp">
-				<button class="btn btn-lg btn-outline-success" type="button">Create Quiz!</button>
-			</a>
-		</div>
-			<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	</body>
 </html>

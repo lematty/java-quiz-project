@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Exam {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -29,6 +30,10 @@ public class Exam {
 		this.title = title;
 	}
 
-	public Exam() {
+	public Exam() {}
+
+	@Override
+	public String toString() {
+		return "Exam [id=" + id + ", title=" + title + "]";
 	}
 }

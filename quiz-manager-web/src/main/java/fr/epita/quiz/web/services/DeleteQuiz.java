@@ -10,30 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.epita.quiz.datamodel.Exam;
+import fr.epita.quiz.datamodel.Student;
 import fr.epita.quiz.services.ExamDAO;
 import fr.epita.quiz.web.actions.SpringServlet;
 
-@WebServlet(urlPatterns = "/create-quiz")
+@WebServlet(urlPatterns = "/delete-quiz")
 
-public class CreateQuiz extends SpringServlet {
+public class DeleteQuiz extends SpringServlet {
 
 	@Inject
 	ExamDAO examDAO;
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("testName"));
 		Exam exam = new Exam();
-		exam.setTitle(request.getParameter("testName"));
-		examDAO.create(exam);
-		System.out.println("\n---------------- Exam List Result -----------------");
-		List<Exam> examList = examDAO.search(new Exam());
+		exam.setTitle(request.getParameter("testTitle"));
+		List<Exam> examList = examDAO.search(exam);
 		for (Exam examResult : examList) {
-			System.out.println(examResult);
+			exam = examResult;
 		}
-		System.out.println("---------------------------------------------------\n");
+		System.out.println(exam + " to be removed");
+		examDAO.delete(exam);
 		response.sendRedirect("quizzes");
 	}
 }
-
