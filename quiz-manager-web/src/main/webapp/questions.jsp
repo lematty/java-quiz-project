@@ -21,15 +21,26 @@ if (! auth){
     
     <body>
         <h1>Welcome, <%=session.getAttribute("userName") %></h1>
+        <c:if test="${submission==true}"><br><p>Already submitted this exam, additional submissions are not accepted<p></c:if>
         <div class="container">
             <form action="submit_quiz?quiz_id=${quiz_id}" method="post">
 	            <c:forEach var="question" items="${questions}">
 	            <div class="card" style="margin-bottom: 15px;">
-	                <div class="card-header">${question.question.question}</div>
+	                <div class="card-header">
+	                   ${question.question.question}
+	                </div>
 	                <div class="card-body">
 	                <c:forEach var="choice" items="${choices}">
 	                    <c:if test="${question.question.question == choice.question.question}">
-	                        <input type="radio" required name="${question.question.question}" value="${choice.id}" style="margin-right: 5px;">${choice.choice}<br>
+	                    <c:choose>
+						    <c:when test="${submission==false}">
+						        <input type="radio" required name="${question.question.question}" value="${choice.id}" style="margin-right: 5px;">${choice.choice}<br>
+						    </c:when>    
+						    <c:otherwise>
+						        <input disabled type="radio" required name="${question.question.question}" value="${choice.id}" style="margin-right: 5px;">${choice.choice}<br>
+						    </c:otherwise>
+						</c:choose>
+	                        
 	                    </c:if>
 	                </c:forEach>
 	                </div>

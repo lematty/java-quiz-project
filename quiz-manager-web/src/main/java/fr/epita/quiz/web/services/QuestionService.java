@@ -16,11 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 import fr.epita.quiz.datamodel.Exam;
 import fr.epita.quiz.datamodel.ExamQuestion;
 import fr.epita.quiz.datamodel.MCQChoice;
+import fr.epita.quiz.datamodel.MCQSubmission;
 import fr.epita.quiz.datamodel.Question;
+import fr.epita.quiz.datamodel.Student;
+import fr.epita.quiz.datamodel.Submission;
 import fr.epita.quiz.services.ExamDAO;
+import fr.epita.quiz.services.StudentDAO;
 import fr.epita.quiz.services.ExamQuestionDAO;
 import fr.epita.quiz.services.MCQChoiceDAO;
+import fr.epita.quiz.services.MCQSubmissionDAO;
 import fr.epita.quiz.services.QuestionDAO;
+import fr.epita.quiz.services.SubmissionDAO;
 import fr.epita.quiz.web.actions.SpringServlet;
 
 @WebServlet(urlPatterns = "/questions")
@@ -42,6 +48,15 @@ public class QuestionService extends SpringServlet {
 	
 	@Inject
 	private ExamQuestionDAO examquestionDAO;
+	
+	@Inject
+	private SubmissionDAO submissionDAO;
+	
+	@Inject
+	private MCQSubmissionDAO mcqSubmissionDAO;
+	
+	@Inject
+	private StudentDAO studentDAO;
 	
 	public static Map<String, String> getQueryMap(String query)  
 	{  
@@ -89,6 +104,23 @@ public class QuestionService extends SpringServlet {
 		Map<String, String> params = getQueryMap(request.getQueryString());
 		List<ExamQuestion> questions = findAllQuestions(params.get("quiz_id"));
 		List<MCQChoice> choices = new ArrayList<MCQChoice>();
+		
+		String username = (String) request.getSession().getAttribute("userName");
+		Student student = new Student();
+		student.setName(username);
+		Student currentUser = studentDAO.search(student).get(0);
+		
+		// Find the submission, if there is one
+		Submission sub = new Submission();
+		sub.setExam(examDAO.searchExamById(params.get("quiz_id")));
+		sub.setStudent(currentUser);
+		List<Submission> subList = submissionDAO.search(sub);
+		
+		request.getSession().setAttribute("submission", false);
+		
+		if (!subList.isEmpty()) {
+			request.getSession().setAttribute("submission", true);
+		}
 		
 		for (ExamQuestion eq : questions) {
 			List<MCQChoice> newList = findAllChoices(eq.getQuestion());

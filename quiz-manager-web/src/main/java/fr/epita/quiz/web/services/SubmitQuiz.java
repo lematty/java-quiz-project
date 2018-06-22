@@ -49,7 +49,7 @@ public class SubmitQuiz extends SpringServlet {
 	QuestionDAO questionDAO;
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final Map<String, String[]> formInfo = request.getParameterMap();
 		
 		Submission sub = new Submission();
@@ -61,19 +61,25 @@ public class SubmitQuiz extends SpringServlet {
 		Student student = new Student();
 		student.setName(username);
 		Student currentUser = studentDAO.search(student).get(0);
+		System.out.println("---> " + currentUser.getName());
 		
 		// Find Exam
 		Map<String, String> params = QuestionService.getQueryMap(request.getQueryString());
 		Exam currentExam = examDAO.searchExamById(params.get("quiz_id"));
 		
 		for (String key : formInfo.keySet()) {
-			if (key.toString() == "quiz_id") {
+			System.out.println("KEY: " + key);
+			System.out.println("VAL: " + ((String[])formInfo.get(key))[0]);
+			
+			if (key.equals("quiz_id")) {
+				System.out.println("We're here, skipping the quiz id");
 				continue;
 			}
 			
 			// Find current question
-			question.setQuestion(key.toString());
+			question.setQuestion(key);
 			question.setType(QuestionType.MCQ);
+			System.out.println("Current question: " + question.getQuestion());
 			Question currentQuestion = questionDAO.search(question).get(0);
 		
 			// Create question submission
