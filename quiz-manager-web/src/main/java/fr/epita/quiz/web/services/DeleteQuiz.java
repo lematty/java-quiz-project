@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.epita.quiz.datamodel.Exam;
+import fr.epita.quiz.datamodel.ExamQuestion;
 import fr.epita.quiz.datamodel.Student;
 import fr.epita.quiz.services.ExamDAO;
+import fr.epita.quiz.services.ExamQuestionDAO;
 import fr.epita.quiz.web.actions.SpringServlet;
 
 @WebServlet(urlPatterns = "/delete-quiz")
@@ -20,6 +22,9 @@ public class DeleteQuiz extends SpringServlet {
 
 	@Inject
 	ExamDAO examDAO;
+
+	@Inject
+	ExamQuestionDAO examQuestionDAO;
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,6 +37,15 @@ public class DeleteQuiz extends SpringServlet {
 			exam = examResult;
 		}
 		System.out.println(exam + " to be removed");
+		ExamQuestion examQuestion = new ExamQuestion();
+		examQuestion.setExam(exam);
+		List<ExamQuestion> examQuestionList = examQuestionDAO.search(examQuestion);
+		System.out.println(examQuestionList);
+		for (ExamQuestion eqToBeDeleted : examQuestionList) {
+			System.out.println(eqToBeDeleted + " will be deleted");
+			examQuestionDAO.delete(eqToBeDeleted);
+		}
+
 		examDAO.delete(exam);
 		response.sendRedirect("quizzes");
 	}
