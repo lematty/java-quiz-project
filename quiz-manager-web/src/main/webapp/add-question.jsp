@@ -9,7 +9,7 @@
 	</head>
 		<body>
 			<div class="container">
-				<form action="add-question" method="post">
+				<form id="addQuestionForm" action="add-question" method="post">
 					<div class="row">
 						<div class="col-md-12 mb-3">
 							<label for="questionName">Enter Question</label> <input name="questionName"
@@ -23,4 +23,30 @@
 			</div>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 		</body>
+		<script>
+		
+		function parseGET() {
+            var get = {}; 
+
+            var query = document.location
+                .toString()
+                // get the query string
+                .replace(/^.*?\?/, '') 
+                // and remove any existing hash string (thanks, @vrijdenker)
+                .replace(/#.*$/, '') 
+                .split('&');
+
+            for (var i = 0, l=query.length; i<l; i++) {
+                var aux = decodeURIComponent(query[i]).split('=');
+                get[aux[0]] = aux[1]
+            }   
+
+            return get;
+        }
+		
+		window.onload = function () {
+			var getVars = parseGET();
+	        document.getElementById('addQuestionForm').action = "add-question?quiz_id=" + getVars['quiz_id'];
+		};
+		</script>
 </html>

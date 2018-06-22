@@ -2,6 +2,7 @@ package fr.epita.quiz.web.services;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -35,9 +36,9 @@ public class AddQuestion extends SpringServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Exam exam = new Exam();
-		exam.setTitle(request.getParameter("testTitle"));
-		Exam currentExam = examDAO.search(exam).get(0);
+		// Find Exam
+		Map<String, String> params = QuestionService.getQueryMap(request.getQueryString());
+		Exam currentExam = examDAO.searchExamById(params.get("quiz_id"));
 		System.out.println(currentExam.getTitle());
 
 		System.out.println("Add question to " + currentExam.getTitle() + " [" + currentExam.getId() + "]");

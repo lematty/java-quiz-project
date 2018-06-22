@@ -49,7 +49,7 @@ public class SubmitQuiz extends SpringServlet {
 	QuestionDAO questionDAO;
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		final Map<String, String[]> formInfo = request.getParameterMap();
 		
 		Submission sub = new Submission();
