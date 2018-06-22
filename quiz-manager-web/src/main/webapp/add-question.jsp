@@ -11,9 +11,33 @@
 			<div class="container">
 				<form action="add-question" method="post">
 					<div class="row">
-						<div class="col-md-12 mb-3">
+						<div class="col-md-12 mb-3 text-center">
 							<label for="questionName">Enter Question</label> <input name="questionName"
 								class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<p>Answer 1</p>
+						</div>
+						<div class="col-md-10">
+							<input name="answer1" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<p>Answer 2</p>
+						</div>
+						<div class="col-md-10">
+							<input name="answer2" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<p>Answer 3</p>
+						</div>
+						<div class="col-md-10">
+							<input name="answer3" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<p>Answer 4</p>
+						</div>
+						<div class="col-md-10">
+							<input name="answer4" class="form-control" type="text" />
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 							<button class="btn btn-lg btn-outline-success" type="submit">Create</button>

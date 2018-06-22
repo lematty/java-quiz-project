@@ -13,8 +13,8 @@
 			<form action="create-quiz" method="post">
 				<div class="row">
 					<div class="col-md-12 mb-3">
-						<label for="testName">Enter Test Name</label> <input name="testName"
-							class="form-control" type="text" />
+						<label for="testName">Enter Test Name</label>
+						<input name="testName" class="form-control" type="text" />
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 						<button class="btn btn-lg btn-outline-success" type="submit">Create</button>
