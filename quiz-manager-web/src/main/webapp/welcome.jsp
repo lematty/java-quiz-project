@@ -31,8 +31,8 @@ if (! auth){
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<form action="delete-quiz" method="post">
-							<input name="testId" value="${exam.id}" class="form-control" type="text" />
-							<input name="testTitle" value="${exam.title}" class="form-control" type="text" />
+							<input name="testId" value="${exam.id}" class="form-control" type="text"/>
+							<input name="testTitle" value="${exam.title}" class="form-control" type="text"/>
 							<button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
 						</form>
 					</div>
@@ -44,9 +44,6 @@ if (! auth){
 					<button class="btn btn-lg btn-outline-success" type="button">Create Quiz</button>
 				</a>
 			</div>
-            <c:forEach var="exam" items="${exams}">
-                <a href="questions?quiz_id=${exam.id}">${exam.title}</a><br>
-            </c:forEach>
 		</div>
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
