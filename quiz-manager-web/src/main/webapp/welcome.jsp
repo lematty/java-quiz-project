@@ -27,7 +27,7 @@ if (! auth){
 			<div class="row">
 				<c:forEach var="exam" items="${exams}">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-		                <a href="quiz?id=${exam.id}">${exam.title}</a>
+		                <a href="questions?quiz_id=${exam.id}">${exam.title}</a>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<form action="delete-quiz" method="post">
@@ -44,6 +44,9 @@ if (! auth){
 					<button class="btn btn-lg btn-outline-success" type="button">Create Quiz</button>
 				</a>
 			</div>
+            <c:forEach var="exam" items="${exams}">
+                <a href="questions?quiz_id=${exam.id}">${exam.title}</a><br>
+            </c:forEach>
 		</div>
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
