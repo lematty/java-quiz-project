@@ -21,7 +21,10 @@ if (! auth){
     
     <body>
         <h1>Welcome, <%=session.getAttribute("userName") %></h1>
-        <c:if test="${submission==true}"><br><p>Already submitted this exam, additional submissions are not accepted<p></c:if>
+        <c:if test="${submission==true}">
+        <br><p>Already submitted this exam, additional submissions are not accepted<p>
+        <p>Score: ${correct}/${total}</p>
+        </c:if>
         <div class="container">
             <form action="submit_quiz?quiz_id=${quiz_id}" method="post">
 	            <c:forEach var="question" items="${questions}">

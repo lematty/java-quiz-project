@@ -53,7 +53,7 @@ public class SubmitQuiz extends SpringServlet {
 		final Map<String, String[]> formInfo = request.getParameterMap();
 		
 		Submission sub = new Submission();
-		MCQSubmission mcqSub = new MCQSubmission();
+		MCQSubmission mcqSub;
 		Question question = new Question();
 		
 		// Find the current user
@@ -92,6 +92,7 @@ public class SubmitQuiz extends SpringServlet {
 			MCQChoice currentChoice = mcqChoiceDAO.searchById(((String[])formInfo.get(key))[0]);
 			
 			//choice student exam
+			mcqSub = new MCQSubmission();	// attempt to stop if from updating, and force a create
 			mcqSub.setChoice(currentChoice);
 			mcqSub.setExam(currentExam);
 			mcqSub.setStudent(currentUser);

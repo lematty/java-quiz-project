@@ -51,43 +51,64 @@ public class ExamService extends SpringServlet {
 
 	public void createDummyQuestion() {
 		final Exam e = new Exam();
-		e.setTitle("This is my goddamn exam");
+		e.setTitle("World Capitals");
 		repository.create(e);
 		final Exam e2 = new Exam();
-		e2.setTitle("Are you tired of this yet?");
+		e2.setTitle("C Basics");
 		repository.create(e2);
 		
 		final Question q1 = new Question();
-		q1.setQuestion("question 1");
+		q1.setQuestion("What is the capital of France?");
 		q1.setType(QuestionType.MCQ);
 		qDAO.create(q1);
 		
 		//// --->
 		final MCQChoice choice = new MCQChoice();
-		choice.setChoice("Choice A for q1");
+		choice.setChoice("Paris");
+		choice.setValid(true);
 		choice.setQuestion(q1);
 		choiceDAO.create(choice);
 		
 		final MCQChoice choice2 = new MCQChoice();
-		choice2.setChoice("Choice B for q1");
+		choice2.setChoice("Lyon");
+		choice2.setValid(false);
 		choice2.setQuestion(q1);
 		choiceDAO.create(choice2);
 		
 		final Question q2 = new Question();
-		q2.setQuestion("question 2");
+		q2.setQuestion("What is the capital of the USA");
 		q2.setType(QuestionType.MCQ);
 		qDAO.create(q2);
 		
 		//// --->
 		final MCQChoice choice3 = new MCQChoice();
-		choice3.setChoice("Choice A for q2");
+		choice3.setChoice("New York");
+		choice3.setValid(false);
 		choice3.setQuestion(q2);
 		choiceDAO.create(choice3);
 		
 		final MCQChoice choice4 = new MCQChoice();
-		choice4.setChoice("Choice B for q2");
+		choice4.setChoice("Washington DC");
 		choice4.setQuestion(q2);
+		choice4.setValid(true);
 		choiceDAO.create(choice4);
+		
+		final Question q3 = new Question();
+		q3.setQuestion("Which is a primitive type in C");
+		q3.setType(QuestionType.MCQ);
+		qDAO.create(q3);
+		
+		final MCQChoice choice5 = new MCQChoice();
+		choice5.setChoice("int");
+		choice5.setQuestion(q3);
+		choice5.setValid(true);
+		choiceDAO.create(choice5);
+		
+		final MCQChoice choice6 = new MCQChoice();
+		choice6.setChoice("orange");
+		choice6.setQuestion(q3);
+		choice6.setValid(false);
+		choiceDAO.create(choice6);
 			
 		final ExamQuestion eq = new ExamQuestion();
 		eq.setExam(e);
@@ -101,7 +122,7 @@ public class ExamService extends SpringServlet {
 		
 		final ExamQuestion eq2 = new ExamQuestion();
 		eq2.setExam(e2);
-		eq2.setQuestion(q2);
+		eq2.setQuestion(q3);
 		eqDAO.create(eq2);
 		
 	}
