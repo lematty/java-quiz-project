@@ -52,7 +52,6 @@ public class AuthenticationService {
 		System.out.println(studentNameCheck);
 		System.out.println(studentPassCheck);
 
-		//return (studentNameCheck.equals(username) && studentPassCheck.equals(password));
-		return true;
+		return (studentNameCheck.equals(username) && studentPassCheck.equals(password));
 	}
 }
