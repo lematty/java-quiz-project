@@ -1,6 +1,8 @@
 package fr.epita.quiz.web.services;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +49,7 @@ public class AddQuestion extends SpringServlet{
 		System.out.println(currentExam.getTitle());
 
 		System.out.println("Add question to " + currentExam.getTitle() + " [" + currentExam.getId() + "]");
-		
+
 		Question question = new Question();
 		question.setQuestion(request.getParameter("questionName"));
 		question.setType(QuestionType.MCQ);
@@ -57,30 +59,30 @@ public class AddQuestion extends SpringServlet{
 		MCQChoice answer2 = new MCQChoice();
 		MCQChoice answer3 = new MCQChoice();
 		MCQChoice answer4 = new MCQChoice();
+		List<MCQChoice> mcqChoiceList = Arrays.asList(answer1, answer2, answer3, answer4);
+		Integer i = 1;
 
-		answer1.setChoice(request.getParameter("answer1"));
-		answer2.setChoice(request.getParameter("answer2"));
-		answer3.setChoice(request.getParameter("answer3"));
-		answer4.setChoice(request.getParameter("answer4"));
+		String test = request.getParameter("div1");
+		System.out.println("grabbed div variable!!!!!!");
+		System.out.println(test);
+		for (MCQChoice answer : mcqChoiceList) {
+			System.out.println("Entered MCQChoice for loop");
+			if (i == 1) {
+				answer.setValid(true);
+			} else {
+				answer.setValid(false);
+			}
+			answer.setChoice(request.getParameter("answer" + i.toString()));
+			System.out.println(answer.getChoice());
+			answer.setQuestion(question);
+			mcqChoiceDAO.create(answer);
+			System.out.println("Answer created in database");
+			i++;
+		}
 
-		answer1.setValid(true);
-		answer2.setValid(false);
-		answer3.setValid(false);
-		answer4.setValid(false);
-
-		answer1.setQuestion(question);
-		answer2.setQuestion(question);
-		answer3.setQuestion(question);
-		answer4.setQuestion(question);
-
-		mcqChoiceDAO.create(answer1);
-		mcqChoiceDAO.create(answer2);
-		mcqChoiceDAO.create(answer3);
-		mcqChoiceDAO.create(answer4);
-		
 		Question addedQuestion = questionDAO.search(question).get(0);
 		System.out.println(addedQuestion.getQuestion());
-		
+
 		ExamQuestion examQuestion = new ExamQuestion();
 		examQuestion.setExam(currentExam);
 		System.out.println("Add exam to " + examQuestion);

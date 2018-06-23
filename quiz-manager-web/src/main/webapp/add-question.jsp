@@ -8,9 +8,9 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	</head>
 		<body>
-
 			<div class="container">
-				<form id="addQuestionForm" action="add-question" method="post">
+				<form id="addQuestionForm" action="add-question?quiz_id=${exam.id}" method="post">
+					<input name="correctResponse" class="form-control" type="hidden" value=1>
 					<div class="row">
 						<div class="col-md-12 mb-3 text-center">
 							<label for="questionName">Enter Question</label> <input name="questionName"
@@ -22,26 +22,26 @@
 						<div class="col-md-8">
 							<input name="answer1" class="form-control" type="text" />
 						</div>
-						<div class="col-md-2">
-							<button class="btn btn-sm btn-outline-success" id="correct1">Correct Answer</button>
+						<div class="col-md-2" id="div1">
+							<button class="btn btn-sm btn-outline-success" id="correct1" type="button" onclick="addCorrectAnswer(1);">Correct Answer</button>
 						</div>
 						<div class="col-md-2">
 							<p>Answer 2</p>
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-8" id="div2">
 							<input name="answer2" class="form-control" type="text" />
 						</div>
 						<div class="col-md-2">
-							<button class="btn btn-sm btn-outline-success" id="correct2">Correct Answer</button>
+							<button class="btn btn-sm btn-outline-success" id="correct2" type="button" onclick="addCorrectAnswer(2);">Correct Answer</button>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-2" id="div3">
 							<p>Answer 3</p>
 						</div>
 						<div class="col-md-8">
 							<input name="answer3" class="form-control" type="text" />
 						</div>
-						<div class="col-md-2">
-							<button class="btn btn-sm btn-outline-success" id="correct3">Correct Answer</button>
+						<div class="col-md-2" id="div4">
+							<button class="btn btn-sm btn-outline-success" id="correct3" type="button" onclick="addCorrectAnswer(3);">Correct Answer</button>
 						</div>
 						<div class="col-md-2">
 							<p>Answer 4</p>
@@ -50,7 +50,7 @@
 							<input name="answer4" class="form-control" type="text" />
 						</div>
 						<div class="col-md-2">
-							<button class="btn btn-sm btn-outline-success" id="correct4">Correct Answer</button>
+							<button class="btn btn-sm btn-outline-success" id="correct4" type="button" onclick="addCorrectAnswer(4);">Correct Answer</button>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 							<button class="btn btn-lg btn-outline-success" type="submit">Create</button>
@@ -74,13 +74,17 @@
             for (var i = 0, l=query.length; i<l; i++) {
                 var aux = decodeURIComponent(query[i]).split('=');
                 get[aux[0]] = aux[1]
-            }   
+            }
             return get;
         }
-		
+
 		window.onload = function () {
 			var getVars = parseGET();
 	        document.getElementById('addQuestionForm').action = "add-question?quiz_id=" + getVars['quiz_id'];
 		};
+
+		function addCorrectAnswer(number) {
+			document.getElementsByName('correctResponse').value = number;
+		}
 		</script>
 </html>
