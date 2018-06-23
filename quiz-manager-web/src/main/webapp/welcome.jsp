@@ -30,12 +30,10 @@ if (! auth){
 		                <a href="questions?quiz_id=${exam.id}">${exam.title}</a>
 					</div>
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-						<form action="add-question" method="post">
 							<input name="testTitle" value="${exam.title}" class="form-control" type="text" hidden="true"/>
-							<a href="add-question.jsp">
+							<a href="add-question.jsp?quiz_id=${exam.id}">
 								<button class="btn btn-sm btn-outline-success" type="button">Add</button>							
 							</a>
-						</form>
 					</div>
 					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 						<form action="edit-question" method="post">
