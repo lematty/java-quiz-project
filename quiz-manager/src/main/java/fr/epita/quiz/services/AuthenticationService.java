@@ -43,6 +43,11 @@ public class AuthenticationService {
 		Student student = (Student)context.getBean("student");
 
 		List<Student> students = authCheck.search(student);
+		
+		if (students.isEmpty()) {
+			return false;
+		}
+		
 		String studentNameCheck = null;
 		String studentPassCheck = null;
 		for (Student s : students) {
