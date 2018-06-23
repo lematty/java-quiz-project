@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.epita.quiz.datamodel.Exam;
 import fr.epita.quiz.datamodel.ExamQuestion;
+import fr.epita.quiz.datamodel.MCQChoice;
 import fr.epita.quiz.datamodel.Question;
 import fr.epita.quiz.datamodel.QuestionType;
 import fr.epita.quiz.services.ExamDAO;
 import fr.epita.quiz.services.ExamQuestionDAO;
+import fr.epita.quiz.services.MCQChoiceDAO;
 import fr.epita.quiz.services.QuestionDAO;
 import fr.epita.quiz.web.actions.SpringServlet;
 
@@ -34,6 +36,9 @@ public class AddQuestion extends SpringServlet{
 	@Inject
 	QuestionDAO questionDAO;
 	
+	@Inject
+	MCQChoiceDAO mcqChoiceDAO;
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Find Exam
@@ -47,6 +52,31 @@ public class AddQuestion extends SpringServlet{
 		question.setQuestion(request.getParameter("questionName"));
 		question.setType(QuestionType.MCQ);
 		questionDAO.create(question);
+
+		MCQChoice answer1 = new MCQChoice();
+		MCQChoice answer2 = new MCQChoice();
+		MCQChoice answer3 = new MCQChoice();
+		MCQChoice answer4 = new MCQChoice();
+
+		answer1.setChoice(request.getParameter("answer1"));
+		answer2.setChoice(request.getParameter("answer2"));
+		answer3.setChoice(request.getParameter("answer3"));
+		answer4.setChoice(request.getParameter("answer4"));
+
+		answer1.setValid(true);
+		answer2.setValid(false);
+		answer3.setValid(false);
+		answer4.setValid(false);
+
+		answer1.setQuestion(question);
+		answer2.setQuestion(question);
+		answer3.setQuestion(question);
+		answer4.setQuestion(question);
+
+		mcqChoiceDAO.create(answer1);
+		mcqChoiceDAO.create(answer2);
+		mcqChoiceDAO.create(answer3);
+		mcqChoiceDAO.create(answer4);
 		
 		Question addedQuestion = questionDAO.search(question).get(0);
 		System.out.println(addedQuestion.getQuestion());

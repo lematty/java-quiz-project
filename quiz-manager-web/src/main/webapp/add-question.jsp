@@ -19,26 +19,38 @@
 						<div class="col-md-2">
 							<p>Answer 1</p>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<input name="answer1" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-sm btn-outline-success" id="correct1">Correct Answer</button>
 						</div>
 						<div class="col-md-2">
 							<p>Answer 2</p>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<input name="answer2" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-sm btn-outline-success" id="correct2">Correct Answer</button>
 						</div>
 						<div class="col-md-2">
 							<p>Answer 3</p>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<input name="answer3" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-sm btn-outline-success" id="correct3">Correct Answer</button>
 						</div>
 						<div class="col-md-2">
 							<p>Answer 4</p>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-8">
 							<input name="answer4" class="form-control" type="text" />
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-sm btn-outline-success" id="correct4">Correct Answer</button>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 							<button class="btn btn-lg btn-outline-success" type="submit">Create</button>
